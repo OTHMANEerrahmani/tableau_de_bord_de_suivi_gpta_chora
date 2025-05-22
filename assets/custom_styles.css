@@ -1,0 +1,14 @@
+
+/* For potential custom animations or global styles if needed */
+/* Example: Tailwind JIT might not pick up dynamic classes from rx.cond if complex */
+
+/* Ensure Radix dialog overlay has a background */
+/* This might be handled by reflex's default styling or rx.theme */
+/* dialog[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+} */
+
+/* You might not need this if Radix components via rx.el.dialog handle it well */
+
