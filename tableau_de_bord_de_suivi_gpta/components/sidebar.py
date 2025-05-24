@@ -36,8 +36,8 @@ def organ_sidebar_item(
             ),
             class_name=rx.cond(
                 is_selected,
-                "w-full flex items-center text-left px-3 py-3 text-sm font-medium rounded-md bg-indigo-100 text-indigo-700 transition-colors duration-150",
-                "w-full flex items-center text-left px-3 py-3 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-150",
+                "w-full flex items-center text-left px-3 py-3 text-sm font-medium rounded-md bg-[#F68B1E] text-white transition-colors duration-150",
+                "w-full flex items-center text-left px-3 py-3 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100 hover:text-[#F68B1E] transition-colors duration-150",
             ),
         ),
         key=f"organ-item-{index}",
@@ -47,26 +47,47 @@ def organ_sidebar_item(
 def sidebar_component() -> rx.Component:
     return rx.el.aside(
         rx.el.div(
-            rx.el.h2(
-                "Organes GPTA",
-                class_name="text-xl font-semibold text-gray-800 mb-6 px-3",
-            ),
-            rx.el.ul(
-                rx.foreach(
-                    GptaState.organs, organ_sidebar_item
-                ),
-                role="list",
-                class_name="space-y-1",
-            ),
             rx.el.div(
+                rx.el.h2(
+                    "Organes",
+                    class_name="text-lg font-semibold text-gray-800 mb-4",
+                ),
                 rx.el.button(
                     "Ajouter un Organe",
                     on_click=GptaState.toggle_add_organ_modal,
-                    class_name="mt-6 w-full px-3 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                    class_name="w-full px-4 py-2 text-sm font-medium text-white bg-[#F68B1E] rounded-md hover:bg-[#D67A1A] transition-colors duration-150",
                 ),
-                class_name="px-3",
+                class_name="p-4",
             ),
-            class_name="py-6",
+            rx.el.nav(
+                rx.el.ul(
+                    rx.foreach(
+                        GptaState.organs,
+                        organ_sidebar_item,
+                    ),
+                    class_name="space-y-1",
+                ),
+                class_name="px-2",
+            ),
+            rx.el.div(
+                rx.el.div(
+                    rx.el.img(
+                        src="/oncf_logo_new.png",
+                        alt="Logo ONCF",
+                        class_name="sidebar-logo",
+                    ),
+                    class_name="mb-8",
+                ),
+                rx.el.div(
+                    rx.el.img(
+                        src="/ensem_logo.png",
+                        alt="Logo ENSEM",
+                        class_name="sidebar-logo",
+                    ),
+                ),
+                class_name="sidebar-logo-container",
+            ),
+            class_name="h-full flex flex-col",
         ),
-        class_name="w-72 bg-white border-r border-gray-200 shadow-sm h-screen overflow-y-auto fixed top-0 left-0 pt-16",
+        class_name="fixed top-16 left-0 w-72 h-[calc(100vh-4rem)] bg-white border-r border-gray-200 overflow-y-auto",
     )

@@ -139,6 +139,7 @@ class GptaState(rx.State):
     new_failure_uptime: str = ""
     new_failure_repair_duration: str = ""
     new_failure_description: str = ""
+    selected_year: int = datetime.date.today().year
 
     def _calculate_metrics_for_organ(
         self, organ_name: str
@@ -631,3 +632,11 @@ class GptaState(rx.State):
         return "".join(
             (c if c.isalnum() else "_" for c in name)
         )
+
+    @rx.event
+    def set_selected_year(self, year: str):
+        try:
+            self.selected_year = int(year)
+        except ValueError:
+            pass
+        yield GptaState.update_all_organ_metrics

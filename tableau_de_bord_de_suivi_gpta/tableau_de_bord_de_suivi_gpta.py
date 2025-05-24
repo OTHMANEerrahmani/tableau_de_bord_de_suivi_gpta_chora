@@ -11,13 +11,25 @@ from tableau_de_bord_de_suivi_gpta.components.modals import (
 def app_header() -> rx.Component:
     return rx.el.header(
         rx.el.div(
+            rx.el.div(
+                rx.el.img(
+                    src="/oncf_logo.png",
+                    alt="Logo ONCF",
+                    class_name="header-logo-img",
+                ),
+                rx.el.span(
+                    "ONCF",
+                    class_name="header-logo-text",
+                ),
+                class_name="header-logo",
+            ),
             rx.el.h1(
                 "Tableau de Bord de Maintenance GPTA",
                 class_name="text-2xl font-bold text-white",
             ),
-            class_name="container mx-auto px-4 py-4 flex justify-between items-center",
+            class_name="container mx-auto flex justify-between items-center",
         ),
-        class_name="bg-indigo-700 shadow-md fixed top-0 left-0 right-0 z-40",
+        class_name="app-header fixed top-0 left-0 right-0 z-40",
     )
 
 
